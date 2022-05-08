@@ -1,0 +1,1 @@
+cargo run -p serde-generate -- --language php --with-runtimes bcs serde bincode --module-name test --target-source-dir "./php"

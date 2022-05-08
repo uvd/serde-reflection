@@ -8,7 +8,7 @@
 //! '''
 
 use serde_generate::{
-    cpp, csharp, dart, golang, java, python3, rust, swift, typescript, CodeGeneratorConfig,
+    cpp, csharp, dart, golang, java, python3, rust, swift, typescript, php ,CodeGeneratorConfig,
     Encoding, SourceInstaller,
 };
 use serde_reflection::Registry;
@@ -27,6 +27,7 @@ enum Language {
     TypeScript,
     CSharp,
     Swift,
+    Php,
 }
 }
 
@@ -155,6 +156,10 @@ fn main() {
                     Language::Swift => swift::CodeGenerator::new(&config)
                         .output(&mut out, &registry)
                         .unwrap(),
+                    Language::Php => {
+                        panic!("Code generation in php requires `--target-source-dir`")
+
+                    }
                 }
             }
         }
@@ -175,6 +180,7 @@ fn main() {
                     Language::TypeScript => Box::new(typescript::Installer::new(install_dir)),
                     Language::CSharp => Box::new(csharp::Installer::new(install_dir)),
                     Language::Swift => Box::new(swift::Installer::new(install_dir)),
+                    Language::Php => Box::new(php::Installer::new(install_dir)),
                 };
 
             if let Some((registry, name)) = named_registry_opt {

@@ -156,6 +156,9 @@ pub mod rust;
 pub mod swift;
 /// Support for code-generation in TypeScript/JavaScript
 pub mod typescript;
+/// Support for code-generation in php
+pub mod php;
+
 
 #[doc(hidden)]
 /// Utility functions to help testing code generators.
